@@ -1,0 +1,219 @@
+/**
+ * Reusable Button Component Styles
+ * Uses design tokens from src/index.css
+ */
+
+/* Base Button (matches both .button and .Button for flexibility) */
+.button,
+.Button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: inherit;
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-none);
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    user-select: none;
+    transition:
+        background-color var(--duration-fast) var(--ease-standard),
+        border-color var(--duration-fast) var(--ease-standard),
+        color var(--duration-fast) var(--ease-standard),
+        box-shadow var(--duration-fast) var(--ease-standard),
+        transform var(--duration-instant) var(--ease-standard);
+}
+
+.button:focus-visible,
+.Button:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring-style);
+}
+
+.button:active:not(:disabled),
+.Button:active:not(:disabled) {
+    transform: scale(0.99);
+}
+
+.button:disabled,
+.Button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+}
+
+/* ==========================================================================
+ * VARIANTS
+ * ========================================================================== */
+
+/* Primary Variant (Slate Obsidian - High contrast on white) */
+.primary {
+    background-color: var(--color-action-primary-bg);
+    color: var(--color-action-primary-text);
+    border-color: transparent;
+    box-shadow: var(--shadow-sm);
+}
+
+.primary:hover:not(:disabled) {
+    background-color: var(--color-action-primary-bg-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.primary:active:not(:disabled) {
+    background-color: var(--color-action-primary-bg-active);
+}
+
+/* Accent Variant (Indigo Brand) */
+.accent {
+    background-color: var(--color-action-accent-bg);
+    color: var(--color-action-accent-text);
+    border-color: transparent;
+    box-shadow: var(--shadow-sm);
+}
+
+.accent:hover:not(:disabled) {
+    background-color: var(--color-action-accent-bg-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.accent:active:not(:disabled) {
+    background-color: var(--color-action-accent-bg-active);
+}
+
+/* Secondary Variant (Crisp White Card with subtle border) */
+.secondary {
+    background-color: var(--color-action-secondary-bg);
+    color: var(--color-action-secondary-text);
+    border-color: var(--color-action-secondary-border);
+    box-shadow: var(--shadow-xs);
+}
+
+.secondary:hover:not(:disabled) {
+    background-color: var(--color-action-secondary-bg-hover);
+    border-color: var(--neutral-300);
+    color: var(--color-text-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.secondary:active:not(:disabled) {
+    background-color: var(--color-action-secondary-bg-active);
+}
+
+/* Outline Variant */
+.outline {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border-color: var(--color-border-default);
+}
+
+.outline:hover:not(:disabled) {
+    background-color: var(--neutral-50);
+    border-color: var(--neutral-300);
+}
+
+.outline:active:not(:disabled) {
+    background-color: var(--neutral-100);
+}
+
+/* Ghost Variant */
+.ghost {
+    background-color: transparent;
+    color: var(--color-action-ghost-text);
+    border-color: transparent;
+}
+
+.ghost:hover:not(:disabled) {
+    background-color: var(--color-action-ghost-bg-hover);
+    color: var(--color-text-primary);
+}
+
+.ghost:active:not(:disabled) {
+    background-color: var(--color-action-ghost-bg-active);
+}
+
+/* Danger Variant (Refund / Void / Delete) */
+.danger {
+    background-color: var(--danger-600);
+    color: var(--white);
+    border-color: transparent;
+    box-shadow: var(--shadow-sm);
+}
+
+.danger:hover:not(:disabled) {
+    background-color: var(--danger-700);
+    box-shadow: var(--shadow-md);
+}
+
+.danger:active:not(:disabled) {
+    background-color: var(--danger-800, #9f1239);
+}
+
+/* ==========================================================================
+ * SIZES
+ * ========================================================================== */
+
+/* Small */
+.sm {
+    height: 32px;
+    padding: 0 var(--space-3);
+    font-size: var(--font-size-xs);
+    border-radius: var(--radius-sm);
+}
+
+/* Medium (Default) */
+.md {
+    height: 42px;
+    padding: 0 var(--space-4);
+    font-size: var(--font-size-sm);
+    border-radius: var(--radius-md);
+}
+
+/* Large (Touch POS Friendly) */
+.lg {
+    height: 50px;
+    padding: 0 var(--space-6);
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-lg);
+}
+
+/* ==========================================================================
+ * MODIFIERS & STATES
+ * ========================================================================== */
+
+/* Full Width */
+.fullWidth {
+    width: 100%;
+}
+
+/* Loading State */
+.loading {
+    pointer-events: none;
+    cursor: wait;
+}
+
+/* Animated Spinner */
+.spinner {
+    display: inline-block;
+    width: 1.125em;
+    height: 1.125em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: var(--radius-full);
+    animation: spin 600ms linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
