@@ -1,16 +1,27 @@
 import { useState } from 'react';
 import styles from './LoginForm.module.css';
 import Button from '../../../components/common/Button/button';
+import { authService } from '../api/authService';
 
 export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('Logging in with:', { email, password });
-    alert('Attempting login for: ${email');
+    setLoading(true);
+    setError(null);
+
+    try {
+      const result = await authService.login(email, password);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -28,7 +39,7 @@ export default function Login() {
             <label className={styles.label} htmlFor='password'>Password</label>
             <input className={styles.input} type='password' id='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter you password' required></input>
           </div>
-          <Button type='submit' variant='primary' size='md' fullwidth>
+          <Button type='submit' variant='primary' size='md' fullwidth isLoading={loading}>
             Login
           </Button>
         </form>
